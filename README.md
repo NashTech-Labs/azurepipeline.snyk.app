@@ -2,6 +2,8 @@
 
 This template consists of a yaml for Azure pipeline that can be extended as template for snyk app test.
 
+**Note:** Snyk Task is available on market place at <https://marketplace.visualstudio.com/items?itemName=Snyk.snyk-security-scan>
+
 ## Pipeline Requirements
 
 The Snyk Module pipeline requires the following parameters to be defined:
