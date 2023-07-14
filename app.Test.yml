@@ -1,0 +1,62 @@
+parameters:
+- name: nodeVersion
+  type: string
+  default: '16.x'
+
+- name: snykServiceConnectionName
+  type: string
+
+- name: projectName
+  type: string
+  default: ''
+
+- name: organisation
+  type: string
+  default: ''
+
+- name: severityThreshold
+  type: string
+  default: 'low'
+
+- name: monitorWhen
+  type: string
+  default: 'always'
+
+- name: failOnIssues
+  type: boolean
+  default: true
+
+- name: targetFile
+  type: string
+  default: ''
+
+- name: additionalArguments
+  type: string
+  default: ''
+
+- name: testDirectory
+  type: string
+  default: '$(Build.SourcesDirectory)'
+
+steps:
+
+- task: NodeTool@0
+  displayName: "Node installation"
+  inputs:
+    versionSource: 'spec'
+    versionSpec: '${{parameters.nodeVersion}}'
+    checkLatest: true
+
+- task: SnykSecurityScan@1
+  displayName: "Snyk Application Test"
+  inputs:
+    serviceConnectionEndpoint: '${{parameters.snykServiceConnectionName}}'
+    testType: 'app'
+    targetFile: '${{parameters.targetFile}}'
+    severityThreshold: '${{parameters.severityThreshold}}'
+    monitorWhen: '${{parameters.monitorWhen}}'
+    failOnIssues: ${{parameters.failOnIssues}}
+    projectName: '${{parameters.projectName}}'
+    organization: '${{parameters.organisation}}'
+    testDirectory: '${{parameters.testDirectory}}'
+    additionalArguments: '${{parameters.additionalArguments}}'
