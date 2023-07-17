@@ -1,4 +1,4 @@
-# Snyk App test template
+# Azure Pipeline Template for Snyk Application Test
 
 This template consists of a yaml for Azure pipeline that can be extended as template for snyk app test.
 
